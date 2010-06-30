@@ -1,0 +1,32 @@
+.grokabilityCollapse{
+	border-bottom: 1px solid silver;
+	margin-bottom: 0;
+	margin-left: 2px;
+	line-height: 1em !important;
+}
+
+.grokabilityCollapse a:link, .grokabilityCollapse a:visited, .grokabilityCollapse a:hover{
+	text-decoration: none !important;
+	color: gray !important;
+	border: 1px solid silver;
+	border-bottom: 0;
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+	padding: 2px;
+	display: inline-block;
+	width: 15px;
+	padding-left: 6px;
+}
+
+.grokabilityCollapse a:hover{
+	text-decoration: none !important;
+	color: white !important;
+	background-color: silver;
+}
+
+.grokabilityBody{
+	padding: 2px;
+	margin: 2px;
+	margin-top: 0;
+	border-left: 1px solid silver;
+}
