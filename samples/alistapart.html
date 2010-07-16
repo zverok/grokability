@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+	<title>A List Apart: Articles: Stop Forking with CSS3</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="alternate" type="application/rss+xml" title="A List Apart main RSS feed" href="http://www.alistapart.com/site/rss" />
+	<link rel="stylesheet" type="text/css" href="/css/print.css" media="print" /> 
+	<script type="text/javascript">if(top!=self){top.location.replace(self.location.href);}</script>
+	<link rel="stylesheet" href="/css/article.css" type="text/css" media="all" />
+	<style type="text/css">
+		@import url(/css/308.css);
+	</style>
+	
+		
+		
+	</head>
+
+<body class="articles" onload="">
+	
+
+<ul id="navbar">
+  <li id="articles"><a href="http://www.alistapart.com/articles/" title="Articles">Articles</a></li>
+  <li id="topics"><a href="http://www.alistapart.com/topics/" title="Topics">Topics</a></li>
+  <li id="about"><a href="http://www.alistapart.com/about/" title="About">About</a></li>
+  <li id="contact"><a href="http://www.alistapart.com/contact/" title="Contact">Contact</a></li>
+  <li id="contribute"><a href="http://www.alistapart.com/contribute/" title="Contribute">Contribute</a></li>
+  <li id="feed"><a href="http://www.alistapart.com/feed/" title="Feed">Feed</a></li>
+</ul>
+<h1 id="masthead"><a href="http://www.alistapart.com/"><img src="/pix/alalogo.gif" alt="A LIST Apart: For People Who Make Websites" /></a></h1>
+
+
+<div id="ish">
+	<a href="http://www.alistapart.com/issues/308" title="Issue 308">No. <em>308</em></a>
+</div>
+
+
+<div id="main">
+	
+	
+	
+	
+	<div id="content" class="column">
+
+		<div class="ishinfo">June <b>22, 2010</b></div>
+		
+		<h1 class="title"><a href="http://www.alistapart.com/articles/stop-forking-with-css3/">Stop Forking with&nbsp;CSS3</a></h1>
+		<h3 class="byline">
+			by 	<a href="http://www.alistapart.com/authors/g/agustafson"> Aaron Gustafson</a>
+
+
+		</h3>
+		
+		<ul id="metastuff">
+						<li>
+				Published in: <a href="http://www.alistapart.com/topics/topic/css/" title="CSS">CSS</a>, <a href="http://www.alistapart.com/topics/topic/scripting/" title="Scripting">Scripting</a>, <a href="http://www.alistapart.com/topics/topic/industry/" title="Industry">Industry</a>
+									<b>|</b>
+							</li>
+							<li class="discuss">
+					<p><a href="http://www.alistapart.com/comments/stop-forking-with-css3/">Discuss this article &raquo;</a></p>
+				</li>
+					</ul>
+		
+		<div id="articletext">
+			<div class="illustration left full"><img src="/d/stop-forking-with-css3/ALA308_eCSStender_final.jpg" alt="Stop Forking Around with CSS3" /></div>
+
+<p>It seems like virtually every day there&#8217;s a fantastic new example of something amazing you can do with CSS3. Whether it&#8217;s as complex as full-blown animations or as (relatively) simple as RGBa colors, drop shadows, or rounded corners, I marvel at how far we&#8217;ve come since the lowly days of CSS1 or (shudder) the <code>@font</code> element.</p>
+
+<p>The current state of CSS3 reminds me of a typical cinematic device: The scene opens with us, this happy-go-lucky family of developers out for a picnic by the lake on a beautiful summer afternoon. And as we laugh, play, and scamper about entertaining ourselves, the camera pans around, bringing us over to the lake where, beneath the surface, something stirs. Something ominous and foreboding.</p>
+
+<p>Okay, perhaps that was a bit over-dramatic, but what I&#8217;m trying to say is that we&#8217;re ignoring the beasts within our code, hiding just out of view: forks.</p>
+
+<h2>What?</h2>
+
+<p>If you&#8217;ve been working on the web for more than a decade (I&#8217;m probably dating myself), you may remember that bleak time in web design history when JavaScript was a dark art. It earned that reputation because in order to do anything with even the teensiest bit of cross-browser consistency, you had to fork your code.</p>
+
+<p>It was standard practice to have one set of JavaScript functions for Netscape and another set for Internet Explorer. Or, if you were a real masochist, you kept the code combined and created a fork inside the function:</p>
+
+<pre><code>function doSomething(){
+  if (document.getElementById)
+  {
+    // web standards FTW!
+  }
+    else if  (document.all) 
+  {
+    // do something in IE
+  }
+    else if (document.layers)
+  {
+    // do something in Netscape 4.x
+  }
+}</code></pre>
+
+<p>In many cases, especially where animation or event handlers were concerned, the code got really gnarly, easily topping even the most atrocious spaghetti code in HTML. The thing about forking your code is that, when you least expect it, it will find a way to fork you right back.</p>
+
+<p>Now, thanks to Web Standards Project browser-standards advocacy and diligent JavaScript library authors, the world of JavaScript is a much nicer place to work and play. Our code is now relatively fork-free, with fewer nooks and crannies in which bugs can hide. Unfortunately, in our rush to use some of the features available in CSS3, we&#8217;ve fallen off the wagon.</p>
+
+<p>I think <code>@border-radius</code> was the proverbial &#8220;candy&#8221; that the forks used to lead us back into their clutches. We all wanted them; hell, we&#8217;d come up with <a href="http://css-discuss.incutio.com/wiki/Rounded_Corners">myriad ways to fake rounded corners</a> to realize our design dreams. So when Firefox and Safari dangled them in front of our drooling faces, asking only that we add two small forks to our code for the privilege, we jumped at the opportunity.</p>
+
+<pre><code>.this-is-awesome {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}</code></pre>
+
+<p>They were only two small forks, after all, how bad could they be?</p>
+
+<p>Well, once we had symmetrical rounded corners, we wanted asymmetrical rounded corners. After all, we need to be able to express ourselves and there comes a time when every man, woman, and child must stand up and set the radius of each corner independently! Unfortunately, Webkit doesn&#8217;t like the <code>@border-radius</code> shorthand, but that just means we need to be a little more verbose:</p>
+
+<pre><code>.this-is-slightly-less-awesome {
+  border-radius: 10px 5px;
+  -moz-border-radius: 10px 5px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 5px;
+}</code></pre>
+
+<p>Oh, and we probably want to make sure Opera and Konquerer can get the rounded corners too (assuming Opera&#8217;s supporting them this week).</p>
+
+<pre><code>.this-is-absurd {
+  border-radius: 10px 5px;
+  -moz-border-radius: 10px 5px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 5px;
+  -o-border-radius: 10px 5px;
+  -khtml-border-top-left-radius: 10px;
+  -khtml-border-top-right-radius: 5px;
+  -khtml-border-bottom-right-radius: 10px;
+  -khtml-border-bottom-left-radius: 5px;
+}</code></pre>
+
+<p>Now, are you seeing a problem here? Does it remind you of anything we <em>used</em> to do in our CSS?</p>
+
+<pre><code>.can-you-hear-me-now {
+  padding: 10px;
+  width: 200px;
+  w\idth: 180px;
+  height: 200px;
+  heigh\t: 180px;
+}</code></pre>
+
+<p>Or perhaps you were more fond of something in <a href="http://css-discuss.incutio.com/wiki/Box_Model_Hack#A_Modified_SBMH_.28Tan_hack.29">a nice Tan</a>.</p>
+
+<pre><code>.hooray-for-repetition {
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+}
+* html .hooray-for-repetition {
+  width: 180px;
+  height: 180px;
+}</code></pre>
+
+<p>Call it forking, call it hacking, call it what you will; we shouldn&#8217;t be doing it.</p>
+
+<h2>Another way</h2>
+
+<p>As you can probably tell, forks get me a little riled up. Rather than just getting angry about it, however, I decided to build a JavaScript library that supports clean living (or at least clean CSS): <a href="http://eCSStender.org">eCSStender</a>. (Actually, the original impetus behind the library was a little different, but we&#8217;ll get to that in a bit.)</p>
+
+<p>Boiled down to its essence, eCSStender (pronounced &#8220;extender&#8221;) is a JavaScript library (akin to jQuery or Prototype) specifically built for working with CSS. On its own, eCSStender doesn&#8217;t do anything but analyze your stylesheets. When powering &#8220;extensions,&#8221; however, eCSStender allows you to use properties such as <code>@border-radius</code> and selectors like <code>@.seven:nth-child(even)</code> without having to resort to forks or hacks.</p>
+
+<p>If you&#8217;re developmentally inclined, you&#8217;ll be interested to know that eCSStender not only gives you introspection into the style rules contained in your CSS file(s) and provides a framework for testing a browser&#8217;s support (or lack thereof) for things like selectors or properties, it also provides a mechanism for you to patch browser support for CSS.</p>
+
+<p>If, however, you&#8217;re more inclined toward the design side of things, you&#8217;ll be happy to know that using eCSStender and a handful of extensions allows you to write advanced CSS simply. It Just Works™.</p>
+
+<pre><code>.this-is-so-much-better {
+  border-radius: 5px;
+}</code></pre>
+
+<h2>Using eCSStender</h2>
+
+<p>Using eCSStender is pretty straightforward. You simply include the eCSStender library and whichever extensions you want to run against your CSS.</p>
+
+<p><pre><code>&lt;script type="text/javascript" src="eCSStender.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="eCSStender.CSS3-backgrounds-and
+-borders.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="eCSStender.CSS3-selectors.js"&gt;
+&lt;/script&gt;
+&lt;script type="text/javascript" src="eCSStender.CSS3-color.js"&gt;&lt;/script&gt;</code></pre></p>
+
+<p>Or, you can pick and choose the pieces you want from the currently available extension bundles and create your own custom extension library.</p>
+
+<p><pre><code>&lt;script type="text/javascript" src="eCSStender.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="my-extensions.js"&gt;&lt;/script&gt;</code></pre></p>
+
+<p>So where do you get these extensions? Well, I have developed a number of extensions that offer CSS3 functionality and have bundled them such that they correspond to the various modules of CSS3, such as borders and backgrounds, selectors, and color. I am also aware of several other JavaScript wizards who are working on other pieces of the CSS3 puzzle, including a multi-column layout and more. <a href="http://ecsstender.org/extensions">A complete list of known extensions</a> is being maintained on the eCSStender website and, if you&#8217;re interested, the website also has <a href="http://ecsstender.org/documentation">extensive documentation on how to roll your own</a>.</p>
+
+<p>Once you have included the JavaScript files, you simply go about using the properties as the spec defines them, and the extensions work their magic to translate what you wrote into something browsers understand. The beauty of this setup is that your stylesheets remain clean and fork-free; the extensions do all the dirty work for you.</p>
+
+<p>Extensions are built to be smart, too. Using the eCSStender API, they can test to see whether or not the property or selector you want is supported in the current browser. If the property is supported, the extension doesn&#8217;t run, but if it isn&#8217;t supported, the extension is activated. So in the case of border-radius, Safari 5 implements the standard property and the <code>border-radius</code> extension is not run, but in Safari 4, which only understands <code>-webkit-border-radius</code>, the extension needs to run and makes the necessary translations. Once the majority of browsers accessing your site are savvy enough to grasp standards without the hand-holding, you simply delete the extension just as you would a conditionally-commented stylesheet for a version of IE you no longer need to support. Easy-peasy.</p>
+
+<p>You&#8217;d probably like an example, right? Well, <a href="http://eCSStender.org">the eCSStender site</a> is certainly one, but I&#8217;ve thrown together <a href="http://ecsstender.org/demos/spoon/">another one</a> on the off chance you&#8217;d like to see a combination of CSS3 goodies in action. It makes use of:</p>
+
+<ul>
+<li><code>@border-radius</code>,</li>
+<li><code>@box-shadow</code>,</li>
+<li>RGBa backgrounds,</li>
+<li><code>@transform: rotate()</code>, and</li>
+<li><code>@transition</code> (assuming your browser supports it in some form).</li>
+</ul>
+
+<p>Make sure you hover the box.</p>
+
+<h2>Yeah, but &#8220;extend&#8221;-er?</h2>
+
+<p>As I mentioned earlier, eCSStender was not originally designed to act as browser <a href="http://en.wikipedia.org/wiki/Spackling_paste">spackle</a>; in fact, the original intent for the library, when I began writing it nearly three years ago, was to make it easy for each of us to get involved in crafting future versions of CSS. Through eCSStender, we can play with new ideas and see our concepts realized in an actual browser. It provides an easy way for us to experiment with syntax and see what works and what doesn&#8217;t without having to wait for native browser support.</p>
+
+<p>If you&#8217;ll indulge me for a moment, I&#8217;ll give you an example. Say, for instance, I thought it might be interesting to imbue elements with physical characteristics and I wanted to use CSS to do it. I might create a new property (with a <a href="http://www.w3.org/TR/css3-syntax/#vendor-specific">vendor-specific extension</a> of &#8220;easy,&#8221; to indicate my company) called <code>@-easy-physics-fill</code> that would take one of several substances, such as &#8220;lead,&#8221; or &#8220;helium,&#8221; as its value. With eCSStender I can easily build an extension to look for that new property and <a href="http://eCSStender.org/demos/physics/">apply the requisite physical properties</a>. It&#8217;s a contrived example, but I think you get the point.</p>
+
+<p>Used in this way, eCSStender empowers us to show the W3C what we want to see next in CSS. And it can help the CSS Working Group evaluate syntax and experiment with new ideas without having to wait for a browser vendor to implement them. This could streamline the process, as ideas that don&#8217;t work well in practical application can be jettisoned before the underlying codebase of any browser has been modified. And who knows, maybe the W3C would even consider an extension to be a valid implementation used as part of <a href="http://www.w3.org/2005/10/Process-20051014/tr#cfi">the standards-development process</a>.</p>
+
+<h2>Pitching the forks</h2>
+
+<p>As a library, eCSStender has a few modest goals. First and foremost, it aims to offer robust tools for designers and developers to make working with CSS better.</p>
+
+<p>On one hand, it seeks to equalize support for CSS across all browsers by offering a simple set of developer tools that makes crafting extensions easy and implementing them a breeze. On the other, it provides those same tools to designers and developers who are interested in conceiving and then building real implementations of the properties, selectors, and mechanisms they want to see in future versions of CSS.</p>
+
+<p>Perhaps my dream of a world with equalized CSS support across browsers is pie-in-the-sky thinking, but I like pie. Even if it <em>is</em> best eaten with a fork. <img src="/pix/eoai.gif" alt="" id="eoai" /> </p>
+
+<div id="credits"> 
+<ul>
+ <li>Illustration by <a href="/authors/c/kevincornell">Kevin Cornell</a></li> 
+</ul> 
+</div>
+
+		</div>
+		
+		<div id="learnmore">
+		  <h2>Learn More</h2>
+		  <p>Related Topics: <a href="http://www.alistapart.com/topics/topic/css/" title="CSS">CSS</a>, <a href="http://www.alistapart.com/topics/topic/scripting/" title="Scripting">Scripting</a>, <a href="http://www.alistapart.com/topics/topic/industry/" title="Industry">Industry</a></p>
+		</div>
+		
+					<div class="discuss">
+			  <h2>Discuss</h2>
+			  <p>Was it good for you, too?  <a href="http://www.alistapart.com/comments/stop-forking-with-css3/">Join the discussion &raquo;</a></p>
+			</div>
+				
+		<div id="authorbio">
+			
+			<h2>About the Author</h2>
+			
+				<p>
+					<img src="/pix/authors/aaron_gustafson.jpg" alt=" Aaron Gustafson" />
+		
+		Aaron Gustafson is the founder and principal consultant of <a href="http://easy-designs.net">Easy! Designs</a>, a web development boutique. He is also a manager of the <a href="http://webstandards.org">Web Standards Project</a> (WaSP), an invited expert to the <a href="http://openwebeducation.org">Open Web Education Alliance</a> (OWEA), and a technical editor here at <cite>ALA</cite>.
+	</p>
+
+
+		
+		</div>
+		
+	</div>
+	
+	<div id="sidebar" class="column">
+	
+		<div class="first">
+	<form method="post" action="http://www.alistapart.com/"  >
+<div class='hiddenFields'>
+<input type="hidden" name="ACT" value="19" />
+<input type="hidden" name="XID" value="7dd8b4bc58a782d37ff98fe579b6132ec5fff1ce" />
+<input type="hidden" name="RP" value="search/results" />
+<input type="hidden" name="NRP" value="" />
+<input type="hidden" name="RES" value="20" />
+<input type="hidden" name="status" value="" />
+<input type="hidden" name="weblog" value="articles|issues" />
+<input type="hidden" name="search_in" value="entries" />
+<input type="hidden" name="where" value="all" />
+<input type="hidden" name="site_id" value="1" />
+</div>
+
+
+	<h3>Search ALA</h3>
+	<input type="text" name="keywords" id="search" />
+	<input type="image" src="/pix/go.gif" id="submit" value="Search" />
+	<p><input type="checkbox" name="incdisc" id="incdisc" value="comments|entries" onclick="this.form.elements['search_in'].value = (this.checked) ? 'everywhere' : 'entries';" /> include discussions</p>
+	</form>
+</div>
+
+<div id="topiclist">
+	<h3>Topics</h3>
+
+	<ul>
+	
+	<li><a href="/topics/code/" title="Code">Code</a></li>
+	
+	<li><a href="/topics/content/" title="Content">Content</a></li>
+	
+	<li><a href="/topics/culture/" title="Culture">Culture</a></li>
+	
+	<li><a href="/topics/design/" title="Design">Design</a></li>
+	
+	<li><a href="/topics/process/" title="Process">Process</a></li>
+	
+	<li><a href="/topics/userscience/" title="User Science">User Science</a></li>
+	
+	</ul>
+
+</div>
+
+
+<div id="snapshot">
+  <h3>Snapshot</h3>
+  <p>Used in this way, eCSStender empowers us to show the W3C what we want to see next in CSS. And it can help the CSS Working Group evaluate syntax and experiment with new ideas without having to wait for a browser vendor to implement them.</p>
+</div>
+
+
+<div id="lucre">
+	<script type="text/javascript">
+	//<![CDATA[
+	(function(id) {
+	  document.write('<script type="text/javascript" src="' +
+	    'http://www.northmay.com/deck/deck' + id + '_js.php?' +
+	    (new Date().getTime()) + '"></' + 'script>');
+	})("AL");
+	//]]>
+	</script>
+	<p>
+	<a href="http://www.coudal.com/deck/">Ad via The Deck</a>
+	</p>
+</div>
+
+<div id="jobboard">
+	<h4>Job Board</h4>
+	<script src="http://www.37signals.com/svn/job.fcgi" type="text/javascript"></script>
+	<p class="monitor">More on the <a href="http://jobs.37signals.com/?source=ala">Job Board</a>.</p>
+</div>
+
+<div id="abookapart-side">
+	<h3>A Book Apart</h3>
+	<a href="http://books.alistapart.com/"><img src="/pix/html5forwebdesigners.png" alt="HTML 5 for Web Designers by Jeremy Keith" /></a>
+	<p>Jeremy Keith on everything you need to know about the web’s new markup language, from semantics to strategy.</p> 
+	
+	<p class="order-now"><a href="http://books.alistapart.com/">Order yours today</a></p>
+</div>
+
+<div id="colophon">
+
+	<p class="init">
+	Hosted by
+	<a href="http://mediatemple.net/"><img src="/pix/mediatemple.png" alt="Hosted by Media Temple" /></a>
+	</p>
+
+	<p class="init">
+	Published by
+	<a href="http://happycog.com/"><img src="/pix/happycog.png" title="" alt="Published by Happy Cog" /></a>
+	</p>
+
+	<p>
+	ALA Mobile by
+	<a href="http://mobify.me/"><img src="/pix/mobify-logo.png" title="" alt="ALA Mobile by Mobify" /></a>
+	</p>
+</div>
+		
+	</div>
+	
+	
+
+</div>
+
+<div id="footer">
+<p>
+<span class="issn">ISSN: <b>1534-0295</b></span>
+<span class="copyright"><a href="/copyright/" rel="license">Copyright &copy;</a> <span class="years">1998-2010</span> A List Apart Magazine and the authors.</span>
+</p>
+</div>
+
+<script src="/d/mint/?js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11757054-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+</body>
+</html>
