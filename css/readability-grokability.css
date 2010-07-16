@@ -3,6 +3,8 @@
 	margin-bottom: 0;
 	margin-left: 2px;
 	line-height: 1em !important;
+    color: gray !important;
+	font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .grokabilityCollapse a:link, .grokabilityCollapse a:visited, .grokabilityCollapse a:hover{
@@ -10,7 +12,6 @@
 	color: gray !important;
 	border: 1px solid silver;
 	border-bottom: 0;
-	font-family: "Lucida Console", "Courier New", monospace;
 	font-size: 10px;
 	padding: 2px;
 	display: inline-block;

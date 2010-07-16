@@ -56,7 +56,8 @@ var grokability = {
 		$('.grokabilityBody').hide();
 		$('.grokabilityAbstract').each(function(){
 			var body = $(this).next();
-			var plnk = $('<p class="grokabilityCollapse"><a href="#">+</a></p>')
+            var words = body.text().split(/\s+/).length;
+			var plnk = $('<p class="grokabilityCollapse"><a href="#">+</a> (' + body.children().length + ' more items, ' + words + ' words)</p>')
 			$(this).after(plnk);
 			plnk.find('a').click(function(){
 				$(this).text($(this).text() == '+' ? '-' : '+');
